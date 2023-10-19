@@ -30,13 +30,15 @@ async function run() {
     await client.connect();
     const database = client.db("insertitem");
     const haiku = database.collection("item");
-
+    const addedprouct = client.db("insertitem");
+    const haiku2 = addedprouct.collection("singleItem")
+// get 
     app.get('/add',async(req,res)=>{
       const alladd = haiku.find()
       const result = await alladd.toArray()
       res.send(result)
     })
-
+// get by id
     app.get('/add/:id',async(req,res)=>{
       const id =req.params.id
       const query ={_id:new ObjectId(id)}
@@ -44,14 +46,14 @@ async function run() {
       res.send(result)
 
     })
-
+// add product for form
     app.post('/add',async(req,res)=>{
       const adddata = req.body
       const result = await haiku.insertOne(adddata);
       console.log(adddata)
       res.send(result)
     })
-
+// update product in details
     app.put('/add/:id',async(req,res)=>{
       const id =req.params.id
      const filter ={_id:new ObjectId(id)}
@@ -70,6 +72,30 @@ async function run() {
 
      const result = await haiku.updateOne(filter, Updated, options);
      res.send(result)
+    })
+
+    // user added products 
+    app.post('/user',async(req,res)=>{
+      const addUser = req.body
+      const result = await haiku2.insertOne(addUser);
+      console.log(addUser)
+      res.send(result)
+    })
+
+    // user added product get 
+
+    app.get('/user',async(req,res)=>{
+      const addedUsers= haiku2.find()
+      const result = await addedUsers.toArray()
+      res.send(result)
+    })
+    // user added pruduct delete 
+    app.delete('/user/:id',async(req,res)=>{
+      const id =req.params.id
+      const query ={_id:id}
+      const result = await haiku2.deleteOne(query);
+      res.send(result)
+
     })
 
 
