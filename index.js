@@ -65,7 +65,7 @@ async function run() {
         brand:Updatedcard.brand,
         type:Updatedcard.type,
         price:Updatedcard.price,
-        short:Updatedcard.short,
+        photo:Updatedcard.photo,
         rating:Updatedcard.rating
       }
      }
