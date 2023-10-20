@@ -7,13 +7,13 @@ const port = process.env.PORT || 3004
 
 app.use(cors())
 app.use(express.json())
-console.log(process.env.DB_name)
-console.log(process.env.DB_password)
+console.log(process.env.DB_NAM)
+console.log(process.env.DB_PASS)
 
 
 
 
-const uri = `mongodb+srv://${process.env.DB_name}:${process.env.DB_password}@cluster0.kkqbu90.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_NAM}:${process.env.DB_PASS}@cluster0.kkqbu90.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
